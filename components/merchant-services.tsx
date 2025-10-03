@@ -1,16 +1,21 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Phone, MessageCircle, Mail, Share2 } from "lucide-react"
-import type { Merchant, Service } from "@/lib/types"
+import { useState } from "react";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Phone, MessageCircle, Mail, Share2 } from "lucide-react";
+import type { Merchant, Service } from "@/lib/types";
 
 interface MerchantServicesProps {
-  merchant: Merchant
+  merchant: Merchant;
 }
 
 // Mock services data with images
@@ -18,7 +23,8 @@ const mockServices: Service[] = [
   {
     id: "SVC-001",
     service_name: "Box Braids",
-    description: "Professional box braids in various sizes. Long-lasting style that protects your natural hair.",
+    description:
+      "Professional box braids in various sizes. Long-lasting style that protects your natural hair.",
     pricing: "E250 - E450",
     images: [
       "/box-braids-hairstyle.png",
@@ -36,7 +42,8 @@ const mockServices: Service[] = [
   {
     id: "SVC-002",
     service_name: "Cornrows",
-    description: "Traditional cornrow braiding with modern designs. Perfect for any occasion.",
+    description:
+      "Traditional cornrow braiding with modern designs. Perfect for any occasion.",
     pricing: "E150 - E300",
     images: [
       "/cornrows-hairstyle.jpg",
@@ -54,7 +61,8 @@ const mockServices: Service[] = [
   {
     id: "SVC-003",
     service_name: "Weave Installation",
-    description: "High-quality weave installation with natural-looking results. Various textures available.",
+    description:
+      "High-quality weave installation with natural-looking results. Various textures available.",
     pricing: "E400 - E800",
     images: [
       "/weave-hairstyle.jpg",
@@ -72,7 +80,8 @@ const mockServices: Service[] = [
   {
     id: "SVC-004",
     service_name: "Hair Coloring",
-    description: "Professional hair coloring services with premium products. Custom colors available.",
+    description:
+      "Professional hair coloring services with premium products. Custom colors available.",
     pricing: "E200 - E500",
     images: [
       "/placeholder.svg?height=400&width=400",
@@ -90,7 +99,8 @@ const mockServices: Service[] = [
   {
     id: "SVC-005",
     service_name: "Locs Maintenance",
-    description: "Expert locs retwisting and maintenance. Keep your locs looking fresh and healthy.",
+    description:
+      "Expert locs retwisting and maintenance. Keep your locs looking fresh and healthy.",
     pricing: "E180 - E350",
     images: [
       "/placeholder.svg?height=400&width=400",
@@ -108,7 +118,8 @@ const mockServices: Service[] = [
   {
     id: "SVC-006",
     service_name: "Bridal Hair",
-    description: "Elegant bridal hairstyling for your special day. Includes trial session.",
+    description:
+      "Elegant bridal hairstyling for your special day. Includes trial session.",
     pricing: "E600 - E1200",
     images: [
       "/placeholder.svg?height=400&width=400",
@@ -123,18 +134,22 @@ const mockServices: Service[] = [
     display_order: 6,
     is_active: true,
   },
-]
+];
 
 export function MerchantServices({ merchant }: MerchantServicesProps) {
-  const [selectedService, setSelectedService] = useState<Service | null>(null)
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   return (
     <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="font-serif text-3xl font-bold text-foreground">Our Services</h2>
-            <p className="mt-1 text-muted-foreground">Browse our {mockServices.length} professional services</p>
+            <h2 className="font-serif text-3xl font-bold text-foreground">
+              Our Services
+            </h2>
+            <p className="mt-1 text-muted-foreground">
+              Browse our {mockServices.length} professional services
+            </p>
           </div>
         </div>
 
@@ -143,7 +158,7 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
           {mockServices.map((service) => (
             <Card
               key={service.id}
-              className="group cursor-pointer overflow-hidden border-2 transition-all hover:border-primary/50 hover:shadow-lg"
+              className="p-0 group cursor-pointer overflow-hidden border-2 transition-all hover:border-primary/50 hover:shadow-lg"
               onClick={() => setSelectedService(service)}
             >
               <div className="relative aspect-square overflow-hidden bg-muted">
@@ -163,10 +178,18 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
                 <h3 className="font-serif text-lg font-semibold text-foreground line-clamp-1">
                   {service.service_name}
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{service.description}</p>
+                <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+                  {service.description}
+                </p>
                 <div className="mt-3 flex items-center justify-between">
-                  <span className="font-semibold text-primary">{service.pricing}</span>
-                  <Button size="sm" variant="ghost" className="text-primary hover:text-primary">
+                  <span className="font-semibold text-primary">
+                    {service.pricing}
+                  </span>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="text-primary hover:text-primary"
+                  >
                     View Details
                   </Button>
                 </div>
@@ -177,12 +200,17 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
       </div>
 
       {/* Service Detail Modal */}
-      <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
+      <Dialog
+        open={!!selectedService}
+        onOpenChange={() => setSelectedService(null)}
+      >
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           {selectedService && (
             <>
               <DialogHeader>
-                <DialogTitle className="font-serif text-3xl">{selectedService.service_name}</DialogTitle>
+                <DialogTitle className="font-serif text-3xl">
+                  {selectedService.service_name}
+                </DialogTitle>
               </DialogHeader>
 
               <div className="space-y-6">
@@ -198,7 +226,10 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
                   </div>
                   <div className="grid grid-cols-6 gap-2">
                     {selectedService.images.slice(1, 7).map((image, index) => (
-                      <div key={index} className="relative aspect-square overflow-hidden rounded-md bg-muted">
+                      <div
+                        key={index}
+                        className="relative aspect-square overflow-hidden rounded-md bg-muted"
+                      >
                         <Image
                           src={image || "/placeholder.svg"}
                           alt={`${selectedService.service_name} ${index + 2}`}
@@ -213,46 +244,75 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
                 {/* Service Details */}
                 <div className="space-y-4">
                   <div>
-                    <h3 className="mb-2 font-semibold text-foreground">Description</h3>
-                    <p className="text-muted-foreground">{selectedService.description}</p>
+                    <h3 className="mb-2 font-semibold text-foreground">
+                      Description
+                    </h3>
+                    <p className="text-muted-foreground">
+                      {selectedService.description}
+                    </p>
                   </div>
 
                   <div>
-                    <h3 className="mb-2 font-semibold text-foreground">Pricing</h3>
-                    <p className="text-2xl font-bold text-primary">{selectedService.pricing}</p>
+                    <h3 className="mb-2 font-semibold text-foreground">
+                      Pricing
+                    </h3>
+                    <p className="text-2xl font-bold text-primary">
+                      {selectedService.pricing}
+                    </p>
                   </div>
 
-                  {selectedService.variants && selectedService.variants.length > 0 && (
-                    <div>
-                      <h3 className="mb-2 font-semibold text-foreground">Available Options</h3>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedService.variants.map((variant) => (
-                          <Badge key={variant} variant="secondary" className="text-sm">
-                            {variant}
-                          </Badge>
-                        ))}
+                  {selectedService.variants &&
+                    selectedService.variants.length > 0 && (
+                      <div>
+                        <h3 className="mb-2 font-semibold text-foreground">
+                          Available Options
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedService.variants.map((variant) => (
+                            <Badge
+                              key={variant}
+                              variant="secondary"
+                              className="text-sm"
+                            >
+                              {variant}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
 
                 {/* Contact Actions */}
                 <div className="border-t border-border pt-6">
-                  <h3 className="mb-4 font-semibold text-foreground">Contact {merchant.display_name}</h3>
+                  <h3 className="mb-4 font-semibold text-foreground">
+                    Contact {merchant.display_name}
+                  </h3>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <Button className="gap-2" size="lg">
                       <Phone className="h-4 w-4" />
                       Call Now
                     </Button>
-                    <Button variant="outline" className="gap-2 bg-transparent" size="lg">
+                    <Button
+                      variant="outline"
+                      className="gap-2 bg-transparent"
+                      size="lg"
+                    >
                       <MessageCircle className="h-4 w-4" />
                       WhatsApp
                     </Button>
-                    <Button variant="outline" className="gap-2 bg-transparent" size="lg">
+                    <Button
+                      variant="outline"
+                      className="gap-2 bg-transparent"
+                      size="lg"
+                    >
                       <Mail className="h-4 w-4" />
                       Email
                     </Button>
-                    <Button variant="outline" className="gap-2 bg-transparent" size="lg">
+                    <Button
+                      variant="outline"
+                      className="gap-2 bg-transparent"
+                      size="lg"
+                    >
                       <Share2 className="h-4 w-4" />
                       Share Service
                     </Button>
@@ -264,5 +324,5 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
         </DialogContent>
       </Dialog>
     </>
-  )
+  );
 }

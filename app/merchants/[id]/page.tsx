@@ -1,25 +1,24 @@
-import { notFound } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { MerchantProfileHeader } from "@/components/merchant-profile-header"
-import { MerchantServices } from "@/components/merchant-services"
-import { MerchantPayment } from "@/components/merchant-payment"
-import { MerchantPromotions } from "@/components/merchant-promotions"
-import { mockMerchants } from "@/lib/mock-data"
-import Link from "next/link"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Header } from "@/components/header"
+import { notFound } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { MerchantProfileHeader } from "@/components/merchant-profile-header";
+import { MerchantServices } from "@/components/merchant-services";
+import { MerchantPayment } from "@/components/merchant-payment";
+import { MerchantPromotions } from "@/components/merchant-promotions";
+import { mockMerchants } from "@/lib/mock-data";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Header } from "@/components/header";
 
 interface MerchantPageProps {
   params: {
-    id: string
-  }
+    id: string;
+  };
 }
 
 export default function MerchantPage({ params }: MerchantPageProps) {
-  const merchant = mockMerchants.find((m) => m.merchant_id === params.id)
+  const merchant = mockMerchants.find((m) => m.merchant_id === params.id);
 
   if (!merchant) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -54,5 +53,5 @@ export default function MerchantPage({ params }: MerchantPageProps) {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }
