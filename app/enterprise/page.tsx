@@ -1,22 +1,12 @@
-import { SunriseLogo } from "@/components/sunrise-logo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Building2, Users, BarChart3, Shield } from "lucide-react"
-import Link from "next/link"
+import { Header } from "@/components/header"
 
 export default function EnterprisePage() {
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="border-b border-border bg-card">
-        <div className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <SunriseLogo className="h-10 w-10" />
-            <span className="font-serif text-2xl font-bold tracking-tight text-foreground">SUNRISE HUB</span>
-          </Link>
-          <Button variant="outline">Sign In</Button>
-        </div>
-      </header>
+      <Header showNavigation={false} />
 
       {/* Hero */}
       <section className="container mx-auto px-4 py-16 lg:px-8 lg:py-24">

@@ -1,10 +1,10 @@
-import { SunriseLogo } from "@/components/sunrise-logo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Coins, Gift, TrendingUp, Award, Calendar, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { mockCustomerPoints } from "@/lib/mock-data"
+import { Header } from "@/components/header"
 
 export default function PointsPage() {
   const pointsData = mockCustomerPoints
@@ -20,16 +20,7 @@ export default function PointsPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="border-b border-border bg-card">
-        <div className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <SunriseLogo className="h-10 w-10" />
-            <span className="font-serif text-2xl font-bold tracking-tight text-foreground">SUNRISE HUB</span>
-          </Link>
-          <Button variant="outline">Sign In</Button>
-        </div>
-      </header>
+      <Header showNavigation={false} />
 
       {/* Hero Section */}
       <section className="border-b border-border bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10">

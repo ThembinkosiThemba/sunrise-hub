@@ -1,5 +1,5 @@
 // Mock data for development and demonstration
-import type { Merchant, CustomerPointsSummary } from "./types"
+import type { Merchant, CustomerPointsSummary } from "./types";
 
 export const INDUSTRIES = [
   "Personal Care",
@@ -12,14 +12,15 @@ export const INDUSTRIES = [
   "Education",
   "Healthcare",
   "Transportation",
-]
+];
 
 export const mockMerchants: Merchant[] = [
   {
     merchant_id: "KYC-00012345",
     display_name: "Nokuthula Beauty Studio",
     logo_url: "/beauty-salon-logo.png",
-    short_bio: "Affordable hair styling and braids in Manzini. Mobile appointments available.",
+    short_bio:
+      "Affordable hair styling and braids in Manzini. Mobile appointments available.",
     industry: "Personal Care",
     sub_industry: "Hairdressing",
     contacts: {
@@ -54,7 +55,8 @@ export const mockMerchants: Merchant[] = [
     merchant_id: "KYC-00012346",
     display_name: "Swaziland Crafts Co.",
     logo_url: "/crafts-shop-logo.jpg",
-    short_bio: "Authentic handmade Swazi crafts and traditional artwork. Supporting local artisans.",
+    short_bio:
+      "Authentic handmade Swazi crafts and traditional artwork. Supporting local artisans.",
     industry: "Retail",
     sub_industry: "Arts & Crafts",
     contacts: {
@@ -88,7 +90,8 @@ export const mockMerchants: Merchant[] = [
     merchant_id: "KYC-00012347",
     display_name: "TechFix Eswatini",
     logo_url: "/tech-repair-logo.png",
-    short_bio: "Professional phone and laptop repair services. Same-day service available.",
+    short_bio:
+      "Professional phone and laptop repair services. Same-day service available.",
     industry: "Technology",
     sub_industry: "Repair Services",
     contacts: {
@@ -114,7 +117,8 @@ export const mockMerchants: Merchant[] = [
     merchant_id: "KYC-00012348",
     display_name: "Mama's Kitchen",
     logo_url: "/restaurant-logo.png",
-    short_bio: "Traditional Swazi cuisine and catering services. Home-cooked meals daily.",
+    short_bio:
+      "Traditional Swazi cuisine and catering services. Home-cooked meals daily.",
     industry: "Food & Beverage",
     sub_industry: "Restaurant",
     contacts: {
@@ -141,7 +145,7 @@ export const mockMerchants: Merchant[] = [
     profile_score: 81,
     created_at: "2025-08-01T09:00:00Z",
   },
-]
+];
 
 export const mockCustomerPoints: CustomerPointsSummary = {
   total_points: 1200,
@@ -174,4 +178,85 @@ export const mockCustomerPoints: CustomerPointsSummary = {
       created_at: "2025-09-25T16:45:00Z",
     },
   ],
-}
+};
+
+export const mockServices = [
+  {
+    serviceId: "SVC-001",
+    merchantId: "KYC-00012345",
+    name: "Box Braids - Medium Length",
+    description:
+      "Beautiful box braids for medium length hair. Includes hair extensions and styling.",
+    pricing: "E350 - E450",
+    images: ["/box-braids-hairstyle.png", "/box-braids-side-view.jpg"],
+    variants: [
+      { name: "Small", price: 450 },
+      { name: "Medium", price: 400 },
+      { name: "Large", price: 350 },
+    ],
+  },
+  {
+    serviceId: "SVC-002",
+    merchantId: "KYC-00012345",
+    name: "Cornrows Styling",
+    description:
+      "Traditional cornrows with creative patterns. Perfect for any occasion.",
+    pricing: "E200 - E300",
+    images: ["/cornrows-hairstyle.jpg"],
+    variants: [
+      { name: "Simple Pattern", price: 200 },
+      { name: "Complex Pattern", price: 300 },
+    ],
+  },
+];
+
+export const mockTransactions = [
+  {
+    transactionRef: "TXN-2025-001",
+    merchantId: "KYC-00012345",
+    customerId: "CUST-001",
+    amount: 350,
+    transactionType: "DIRECT_PAYMENT",
+    status: "completed",
+    createdAt: "2025-10-01T14:30:00Z",
+  },
+  {
+    transactionRef: "TXN-2025-002",
+    merchantId: "KYC-00012345",
+    customerId: "CUST-002",
+    amount: 200,
+    transactionType: "VOUCHER_REDEMPTION",
+    status: "completed",
+    createdAt: "2025-09-28T12:15:00Z",
+  },
+  {
+    transactionRef: "TXN-2025-003",
+    merchantId: "KYC-00012345",
+    customerId: "CUST-003",
+    amount: 450,
+    transactionType: "DIRECT_PAYMENT",
+    status: "pending",
+    createdAt: "2025-09-25T16:45:00Z",
+  },
+];
+
+export const mockPointsActivities = [
+  {
+    id: "PA-001",
+    merchantId: "KYC-00012345",
+    customerId: "CUST-001",
+    points: 50,
+    activityType: "PURCHASE",
+    description: "Earned points from purchase",
+    createdAt: "2025-10-01T14:30:00Z",
+  },
+  {
+    id: "PA-002",
+    merchantId: "KYC-00012345",
+    customerId: "CUST-002",
+    points: 30,
+    activityType: "VOUCHER_REDEMPTION",
+    description: "Earned points from voucher redemption",
+    createdAt: "2025-09-28T12:15:00Z",
+  },
+];

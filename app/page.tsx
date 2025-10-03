@@ -1,3 +1,5 @@
+"use client";
+
 import { Search } from "lucide-react";
 import { SunriseLogo } from "@/components/sunrise-logo";
 import { Button } from "@/components/ui/button";
@@ -6,60 +8,24 @@ import { Card, CardContent } from "@/components/ui/card";
 import { UserTypeCard } from "@/components/user-type-card";
 import { PointsDisplay } from "@/components/points-display";
 import { mockCustomerPoints } from "@/lib/mock-data";
+import { Header } from "@/components/header";
 import Link from "next/link";
-import logo from "../public/logo2.svg";
-import Image from "next/image";
+import { useState } from "react";
 
 export default function HomePage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const isLoggedIn = false; // TODO: Replace with actual auth state
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      window.location.href = `/merchants?search=${encodeURIComponent(searchQuery)}`;
+    }
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="border-b border-border bg-card">
-        <div className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <Image src={logo} width={160} height={20} alt="Logo" />
-          </Link>
-
-          <div className="hidden lg:flex items-center gap-6">
-            <Link
-              href="/merchants"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Merchants
-            </Link>
-            <Link
-              href="/points"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Points
-            </Link>
-            <Link
-              href="/dashboard"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Dashboard
-            </Link>
-          </div>
-
-          <Button variant="ghost" size="icon" className="lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="4" x2="20" y1="12" y2="12" />
-              <line x1="4" x2="20" y1="6" y2="6" />
-              <line x1="4" x2="20" y1="18" y2="18" />
-            </svg>
-          </Button>
-        </div>
-      </header>
+      <Header showNavigation={true} />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 lg:px-8 lg:py-24">
@@ -74,12 +40,14 @@ export default function HomePage() {
 
           {/* Search Bar */}
           <div className="mt-10">
-            <form className="relative mx-auto max-w-2xl">
+            <form className="relative mx-auto max-w-2xl" onSubmit={handleSearch}>
               <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Search by business, category or location"
                 className="h-14 rounded-full border-2 pl-12 pr-4 text-base shadow-sm transition-shadow focus-visible:shadow-md"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </form>
           </div>
@@ -109,12 +77,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Sunrise Points Section */}
-      <section className="border-t border-border bg-card">
-        <div className="container mx-auto px-4 py-12 lg:px-8">
-          <PointsDisplay points={mockCustomerPoints} />
-        </div>
-      </section>
+      {/* Sunrise Points Section - Only for logged in users */}
+      {isLoggedIn && (
+        <section className="border-t border-border bg-card">
+          <div className="container mx-auto px-4 py-12 lg:px-8">
+            <PointsDisplay points={mockCustomerPoints} />
+          </div>
+        </section>
+      )}
 
       {/* Features Section */}
       <section className="container mx-auto px-4 py-16 lg:px-8 lg:py-24">

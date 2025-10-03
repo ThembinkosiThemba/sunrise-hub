@@ -13,12 +13,13 @@ interface MerchantCardProps {
 export function MerchantCard({ merchant }: MerchantCardProps) {
   return (
     <Link href={`/merchants/${merchant.merchant_id}`}>
-      <Card className="group h-full overflow-hidden border-2 transition-all hover:border-primary/50 hover:shadow-lg">
+      <Card className="group h-full overflow-hidden border-2 transition-all hover:border-primary/50 hover:shadow-lg p-0">
         <div className="relative h-48 overflow-hidden bg-muted">
           <Image
             src={merchant.logo_url || "/placeholder.svg"}
             alt={merchant.display_name}
             fill
+            priority
             className="object-cover transition-transform group-hover:scale-105"
           />
         </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -16,18 +18,21 @@ import {
   Edit,
   Trash2,
   BarChart3,
+  Menu,
+  X,
 } from "lucide-react"
-import { merchants, services, transactions, pointsActivities } from "@/lib/mock-data"
+import { mockMerchants, mockServices, mockTransactions, mockPointsActivities } from "@/lib/mock-data"
 import { VerificationBadge } from "@/components/verification-badge"
+import { Header } from "@/components/header"
+import { useState } from "react"
 
 export default function DashboardPage() {
-  // Mock: Get current merchant (in real app, from auth session)
-  const currentMerchant = merchants[0]
-  const merchantServices = services.filter((s) => s.merchantId === currentMerchant.merchantId)
-  const merchantTransactions = transactions.filter((t) => t.merchantId === currentMerchant.merchantId)
-  const merchantPoints = pointsActivities.filter((p) => p.merchantId === currentMerchant.merchantId)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const currentMerchant = mockMerchants[0]
+  const merchantServices = mockServices.filter((s) => s.merchantId === currentMerchant.merchant_id)
+  const merchantTransactions = mockTransactions.filter((t) => t.merchantId === currentMerchant.merchant_id)
+  const merchantPoints = mockPointsActivities.filter((p) => p.merchantId === currentMerchant.merchant_id)
 
-  // Calculate stats
   const totalRevenue = merchantTransactions
     .filter((t) => t.status === "completed")
     .reduce((sum, t) => sum + t.amount, 0)
@@ -37,65 +42,82 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-cream">
-      {/* Header */}
       <header className="border-b border-charcoal/10 bg-white">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-sunrise to-sunrise-dark flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
+            <Link href="/" className="flex items-center gap-2 lg:gap-3">
+              <div className="h-8 w-8 lg:h-10 lg:w-10 rounded-full bg-gradient-to-br from-sunrise to-sunrise-dark flex items-center justify-center">
+                <span className="text-white font-bold text-sm lg:text-lg">S</span>
               </div>
-              <div>
-                <h1 className="font-serif text-xl font-bold text-charcoal">Sunrise Hub</h1>
+              <div className="hidden sm:block">
+                <h1 className="font-serif text-lg lg:text-xl font-bold text-charcoal">Sunrise Hub</h1>
                 <p className="text-xs text-charcoal/60">Merchant Dashboard</p>
               </div>
             </Link>
-            <div className="flex items-center gap-4">
-              <Button variant="outline" size="sm" asChild>
-                <Link href={`/merchants/${currentMerchant.merchantId}`}>
+            <div className="flex items-center gap-2 lg:gap-4">
+              <Button variant="outline" size="sm" asChild className="hidden md:flex">
+                <Link href={`/merchants/${currentMerchant.merchant_id}`}>
                   <Eye className="h-4 w-4 mr-2" />
                   View Profile
                 </Link>
               </Button>
-              <Avatar>
-                <AvatarImage src={currentMerchant.logoUrl || "/placeholder.svg"} alt={currentMerchant.displayName} />
-                <AvatarFallback>{currentMerchant.displayName[0]}</AvatarFallback>
+              <Avatar className="h-8 w-8 lg:h-10 lg:w-10">
+                <AvatarImage src={currentMerchant.logo_url || "/placeholder.svg"} alt={currentMerchant.display_name} />
+                <AvatarFallback>{currentMerchant.display_name[0]}</AvatarFallback>
               </Avatar>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
             </div>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-4 pt-4 border-t border-charcoal/10">
+              <Button variant="outline" size="sm" asChild className="w-full">
+                <Link href={`/merchants/${currentMerchant.merchant_id}`}>
+                  <Eye className="h-4 w-4 mr-2" />
+                  View Profile
+                </Link>
+              </Button>
+            </div>
+          )}
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Welcome Section */}
-        <div className="mb-8">
-          <div className="flex items-start justify-between">
+      <div className="container mx-auto px-4 py-4 lg:py-8">
+        <div className="mb-6 lg:mb-8">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div>
-              <h2 className="font-serif text-3xl font-bold text-charcoal mb-2">
-                Welcome back, {currentMerchant.displayName}
+              <h2 className="font-serif text-2xl lg:text-3xl font-bold text-charcoal mb-2">
+                Welcome back, {currentMerchant.display_name}
               </h2>
-              <div className="flex items-center gap-3">
-                <p className="text-charcoal/60">Merchant ID: {currentMerchant.merchantId}</p>
-                <VerificationBadge status={currentMerchant.verificationStatus} />
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+                <p className="text-sm lg:text-base text-charcoal/60">Merchant ID: {currentMerchant.merchant_id}</p>
+                <VerificationBadge status={currentMerchant.verification_status} />
               </div>
             </div>
-            <div className="text-right">
+            <div className="text-left lg:text-right">
               <p className="text-sm text-charcoal/60 mb-1">Profile Score</p>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-32 bg-charcoal/10 rounded-full overflow-hidden">
+                <div className="h-2 w-24 lg:w-32 bg-charcoal/10 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-sunrise to-forest rounded-full"
-                    style={{ width: `${currentMerchant.profileScore}%` }}
+                    style={{ width: `${currentMerchant.profile_score}%` }}
                   />
                 </div>
-                <span className="font-bold text-charcoal">{currentMerchant.profileScore}%</span>
+                <span className="font-bold text-charcoal">{currentMerchant.profile_score}%</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium text-charcoal/60">Total Revenue</CardTitle>
@@ -150,70 +172,68 @@ export default function DashboardPage() {
           </Card>
         </div>
 
-        {/* Main Content Tabs */}
-        <Tabs defaultValue="services" className="space-y-6">
-          <TabsList className="bg-white border border-charcoal/10">
+        <Tabs defaultValue="services" className="space-y-4 lg:space-y-6">
+          <TabsList className="bg-white border border-charcoal/10 w-full grid grid-cols-2 lg:grid-cols-4 h-auto">
             <TabsTrigger
               value="services"
-              className="data-[state=active]:bg-sunrise/10 data-[state=active]:text-sunrise"
+              className="data-[state=active]:bg-sunrise/10 data-[state=active]:text-sunrise text-xs lg:text-sm py-2"
             >
-              <Package className="h-4 w-4 mr-2" />
-              Services
+              <Package className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
+              <span className="hidden sm:inline">Services</span>
             </TabsTrigger>
             <TabsTrigger
               value="transactions"
-              className="data-[state=active]:bg-sunrise/10 data-[state=active]:text-sunrise"
+              className="data-[state=active]:bg-sunrise/10 data-[state=active]:text-sunrise text-xs lg:text-sm py-2"
             >
-              <DollarSign className="h-4 w-4 mr-2" />
-              Transactions
+              <DollarSign className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
+              <span className="hidden sm:inline">Transactions</span>
             </TabsTrigger>
             <TabsTrigger
               value="analytics"
-              className="data-[state=active]:bg-sunrise/10 data-[state=active]:text-sunrise"
+              className="data-[state=active]:bg-sunrise/10 data-[state=active]:text-sunrise text-xs lg:text-sm py-2"
             >
-              <BarChart3 className="h-4 w-4 mr-2" />
-              Analytics
+              <BarChart3 className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
+              <span className="hidden sm:inline">Analytics</span>
             </TabsTrigger>
             <TabsTrigger
               value="settings"
-              className="data-[state=active]:bg-sunrise/10 data-[state=active]:text-sunrise"
+              className="data-[state=active]:bg-sunrise/10 data-[state=active]:text-sunrise text-xs lg:text-sm py-2"
             >
-              <Settings className="h-4 w-4 mr-2" />
-              Settings
+              <Settings className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2" />
+              <span className="hidden sm:inline">Settings</span>
             </TabsTrigger>
           </TabsList>
 
-          {/* Services Tab */}
-          <TabsContent value="services" className="space-y-6">
+          <TabsContent value="services" className="space-y-4 lg:space-y-6">
             <Card>
               <CardHeader>
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <CardTitle className="font-serif text-2xl text-charcoal">Your Services</CardTitle>
-                    <CardDescription>Manage your service listings ({merchantServices.length}/24)</CardDescription>
+                    <CardTitle className="font-serif text-xl lg:text-2xl text-charcoal">Your Services</CardTitle>
+                    <CardDescription className="text-xs lg:text-sm">Manage your service listings ({merchantServices.length}/24)</CardDescription>
                   </div>
-                  <Button className="bg-sunrise hover:bg-sunrise-dark text-white">
+                  <Button className="bg-sunrise hover:bg-sunrise-dark text-white w-full sm:w-auto" size="sm">
                     <Plus className="h-4 w-4 mr-2" />
                     Add Service
                   </Button>
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-3 lg:space-y-4">
                   {merchantServices.map((service) => (
                     <div
                       key={service.serviceId}
-                      className="flex items-center gap-4 p-4 border border-charcoal/10 rounded-lg hover:border-sunrise/50 transition-colors"
+                      className="flex flex-col sm:flex-row sm:items-center gap-3 lg:gap-4 p-3 lg:p-4 border border-charcoal/10 rounded-lg hover:border-sunrise/50 transition-colors"
                     >
                       <img
                         src={service.images[0] || "/placeholder.svg"}
                         alt={service.name}
-                        className="w-20 h-20 object-cover rounded-lg"
+                        className="w-full sm:w-16 lg:w-20 h-32 sm:h-16 lg:h-20 object-cover rounded-lg"
                       />
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-charcoal mb-1">{service.name}</h3>
-                        <p className="text-sm text-charcoal/60 mb-2 line-clamp-1">{service.description}</p>
-                        <div className="flex items-center gap-4 text-xs text-charcoal/60">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-sm lg:text-base text-charcoal mb-1">{service.name}</h3>
+                        <p className="text-xs lg:text-sm text-charcoal/60 mb-2 line-clamp-2">{service.description}</p>
+                        <div className="flex flex-wrap items-center gap-2 lg:gap-4 text-xs text-charcoal/60">
                           <span>{service.images.length} images</span>
                           <span>•</span>
                           <span>{service.variants?.length || 0} variants</span>
@@ -221,7 +241,7 @@ export default function DashboardPage() {
                           <span className="font-semibold text-forest">{service.pricing}</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 justify-end sm:justify-start">
                         <Button variant="outline" size="sm">
                           <Edit className="h-4 w-4" />
                         </Button>
@@ -236,38 +256,37 @@ export default function DashboardPage() {
             </Card>
           </TabsContent>
 
-          {/* Transactions Tab */}
-          <TabsContent value="transactions" className="space-y-6">
+          <TabsContent value="transactions" className="space-y-4 lg:space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle className="font-serif text-2xl text-charcoal">Recent Transactions</CardTitle>
-                <CardDescription>View your payment history and earnings</CardDescription>
+                <CardTitle className="font-serif text-xl lg:text-2xl text-charcoal">Recent Transactions</CardTitle>
+                <CardDescription className="text-xs lg:text-sm">View your payment history and earnings</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   {merchantTransactions.map((transaction) => (
                     <div
                       key={transaction.transactionRef}
-                      className="flex items-center justify-between p-4 border border-charcoal/10 rounded-lg"
+                      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 border border-charcoal/10 rounded-lg"
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-3 lg:gap-4">
                         <div
-                          className={`h-10 w-10 rounded-full flex items-center justify-center ${
+                          className={`h-8 w-8 lg:h-10 lg:w-10 rounded-full flex items-center justify-center shrink-0 ${
                             transaction.status === "completed" ? "bg-forest/10" : "bg-sunrise/10"
                           }`}
                         >
                           <DollarSign
-                            className={`h-5 w-5 ${transaction.status === "completed" ? "text-forest" : "text-sunrise"}`}
+                            className={`h-4 w-4 lg:h-5 lg:w-5 ${transaction.status === "completed" ? "text-forest" : "text-sunrise"}`}
                           />
                         </div>
-                        <div>
-                          <p className="font-semibold text-charcoal">{transaction.transactionType.replace("_", " ")}</p>
-                          <p className="text-sm text-charcoal/60">{transaction.transactionRef}</p>
+                        <div className="min-w-0">
+                          <p className="font-semibold text-sm lg:text-base text-charcoal">{transaction.transactionType.replace("_", " ")}</p>
+                          <p className="text-xs lg:text-sm text-charcoal/60 truncate">{transaction.transactionRef}</p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <p className="font-bold text-charcoal">E{transaction.amount.toFixed(2)}</p>
-                        <Badge variant={transaction.status === "completed" ? "default" : "secondary"} className="mt-1">
+                      <div className="text-left sm:text-right">
+                        <p className="font-bold text-sm lg:text-base text-charcoal">E{transaction.amount.toFixed(2)}</p>
+                        <Badge variant={transaction.status === "completed" ? "default" : "secondary"} className="mt-1 text-xs">
                           {transaction.status}
                         </Badge>
                       </div>
@@ -278,9 +297,8 @@ export default function DashboardPage() {
             </Card>
           </TabsContent>
 
-          {/* Analytics Tab */}
-          <TabsContent value="analytics" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <TabsContent value="analytics" className="space-y-4 lg:space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
               <Card>
                 <CardHeader>
                   <CardTitle className="font-serif text-xl text-charcoal">Performance Overview</CardTitle>
@@ -335,12 +353,11 @@ export default function DashboardPage() {
             </div>
           </TabsContent>
 
-          {/* Settings Tab */}
-          <TabsContent value="settings" className="space-y-6">
+          <TabsContent value="settings" className="space-y-4 lg:space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle className="font-serif text-2xl text-charcoal">Business Settings</CardTitle>
-                <CardDescription>Manage your business profile and preferences</CardDescription>
+                <CardTitle className="font-serif text-xl lg:text-2xl text-charcoal">Business Settings</CardTitle>
+                <CardDescription className="text-xs lg:text-sm">Manage your business profile and preferences</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
@@ -349,7 +366,7 @@ export default function DashboardPage() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="text-sm text-charcoal/60 mb-1 block">Display Name</label>
-                        <p className="font-medium text-charcoal">{currentMerchant.displayName}</p>
+                        <p className="font-medium text-charcoal">{currentMerchant.display_name}</p>
                       </div>
                       <div>
                         <label className="text-sm text-charcoal/60 mb-1 block">Industry</label>
@@ -358,7 +375,7 @@ export default function DashboardPage() {
                     </div>
                     <div>
                       <label className="text-sm text-charcoal/60 mb-1 block">Bio</label>
-                      <p className="text-charcoal">{currentMerchant.shortBio}</p>
+                      <p className="text-charcoal">{currentMerchant.short_bio}</p>
                     </div>
                     <Button variant="outline">
                       <Edit className="h-4 w-4 mr-2" />
@@ -370,7 +387,7 @@ export default function DashboardPage() {
                 <div className="border-t border-charcoal/10 pt-6">
                   <h3 className="font-semibold text-charcoal mb-4">Administrators</h3>
                   <div className="space-y-3">
-                    {currentMerchant.administrators.map((admin, index) => (
+                    {currentMerchant.administrators?.map((admin, index) => (
                       <div
                         key={index}
                         className="flex items-center justify-between p-3 border border-charcoal/10 rounded-lg"

@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation"
-import { SunriseLogo } from "@/components/sunrise-logo"
 import { Button } from "@/components/ui/button"
 import { MerchantProfileHeader } from "@/components/merchant-profile-header"
 import { MerchantServices } from "@/components/merchant-services"
@@ -8,6 +7,7 @@ import { MerchantPromotions } from "@/components/merchant-promotions"
 import { mockMerchants } from "@/lib/mock-data"
 import Link from "next/link"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Header } from "@/components/header"
 
 interface MerchantPageProps {
   params: {
@@ -24,21 +24,7 @@ export default function MerchantPage({ params }: MerchantPageProps) {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="border-b border-border bg-card">
-        <div className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <SunriseLogo className="h-10 w-10" />
-            <span className="font-serif text-2xl font-bold tracking-tight text-foreground">SUNRISE HUB</span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" asChild>
-              <Link href="/merchants">Back to Merchants</Link>
-            </Button>
-            <Button variant="outline">Sign In</Button>
-          </div>
-        </div>
-      </header>
+      <Header showNavigation={false} />
 
       {/* Merchant Profile */}
       <div className="container mx-auto px-4 py-8 lg:px-8">
