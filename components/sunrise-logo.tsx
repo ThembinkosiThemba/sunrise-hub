@@ -1,9 +1,24 @@
 // Sunrise Hub logo component
-export function SunriseLogo({ className = "h-10 w-10" }: { className?: string }) {
+export function SunriseLogo({
+  className = "h-10 w-10",
+}: {
+  className?: string;
+}) {
   return (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
       {/* Sun circle */}
-      <circle cx="50" cy="60" r="20" fill="currentColor" className="text-primary" />
+      <circle
+        cx="50"
+        cy="60"
+        r="20"
+        fill="currentColor"
+        className="text-primary"
+      />
 
       {/* Sun rays */}
       <path
@@ -15,7 +30,13 @@ export function SunriseLogo({ className = "h-10 w-10" }: { className?: string })
       />
 
       {/* Horizon line */}
-      <path d="M10 80 Q50 70 90 80" stroke="currentColor" strokeWidth="2.5" fill="none" className="text-accent" />
+      <path
+        d="M10 80 Q50 70 90 80"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        fill="none"
+        className="text-accent"
+      />
     </svg>
-  )
+  );
 }

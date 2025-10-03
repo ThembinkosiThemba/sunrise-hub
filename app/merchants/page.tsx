@@ -55,18 +55,18 @@ export default function MerchantsPage() {
       <Header showNavigation={false} />
 
       {/* Search Section */}
-      <section className="border-b border-border bg-muted/30">
+      <section className="border-none">
         <div className="container mx-auto px-4 py-8 lg:px-8">
-          <h1 className="font-serif text-4xl font-bold text-foreground">
+          <h1 className="font-serif text-4xl font-bold text-heading">
             Find Merchants
           </h1>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-description text-sm">
             Search by merchant code, name, industry, or location
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             <div className="relative md:col-span-2">
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-description" />
               <Input
                 type="search"
                 placeholder="Search by name or merchant code..."
@@ -98,7 +98,7 @@ export default function MerchantsPage() {
       {/* Merchants Grid */}
       <section className="container mx-auto px-4 py-12 lg:px-8">
         <div className="mb-6 flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-description">
             Showing {filteredMerchants.length} verified merchants
           </p>
         </div>
@@ -111,7 +111,7 @@ export default function MerchantsPage() {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
+            <p className="text-description text-lg">
               No merchants found matching your search.
             </p>
           </div>

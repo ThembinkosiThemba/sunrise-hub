@@ -18,33 +18,38 @@ export default function HomePage() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/merchants?search=${encodeURIComponent(searchQuery)}`;
+      window.location.href = `/merchants?search=${encodeURIComponent(
+        searchQuery
+      )}`;
     }
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-brand">
       <Header showNavigation={true} />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="font-serif text-5xl font-bold tracking-tight text-foreground lg:text-7xl">
+          <h1 className="font-serif text-5xl font-bold tracking-tight text-label lg:text-7xl">
             Get started with Sunrise
           </h1>
-          <p className="mt-6 text-lg text-muted-foreground lg:text-xl">
+          <p className="mt-6 text-lg text-descrition lg:text-xl">
             The one-stop marketing portal for MSMEs and Professionals to bring
             their business online
           </p>
 
           {/* Search Bar */}
           <div className="mt-10">
-            <form className="relative mx-auto max-w-2xl" onSubmit={handleSearch}>
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+            <form
+              className="relative mx-auto max-w-2xl"
+              onSubmit={handleSearch}
+            >
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-description" />
               <Input
                 type="search"
                 placeholder="Search by business, category or location"
-                className="h-14 rounded-full border-2 pl-12 pr-4 text-base shadow-sm transition-shadow focus-visible:shadow-md"
+                className="text-description h-14 rounded-full border-2 pl-12 pr-4 text-base shadow-sm transition-shadow focus-visible:shadow-md"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -88,15 +93,15 @@ export default function HomePage() {
       {/* Features Section */}
       <section className="container mx-auto px-4 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-center font-serif text-4xl font-bold tracking-tight text-foreground lg:text-5xl">
+          <h2 className="text-center font-serif text-4xl font-bold tracking-tight text-label lg:text-5xl">
             Why Choose Sunrise Hub?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-lg description">
             Affordable digital presence for businesses of all sizes in Eswatini
           </p>
 
           <div className="mt-16 grid gap-8 md:grid-cols-3">
-            <Card className="border-2 transition-shadow hover:shadow-lg">
+            <Card className="card bg-surface border-outline transition-shadow hover:shadow-lg">
               <CardContent className="p-8">
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                   <svg
@@ -115,19 +120,19 @@ export default function HomePage() {
                     <path d="m19 9-5 5-4-4-3 3" />
                   </svg>
                 </div>
-                <h3 className="font-serif text-xl font-semibold text-foreground">
+                <h3 className="font-serif text-xl font-semibold text-label">
                   No Website Needed
                 </h3>
-                <p className="mt-3 text-muted-foreground">
+                <p className="mt-3 text-description">
                   Get your business online without the cost of domain
                   registration and web development
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 transition-shadow hover:shadow-lg">
+            <Card className="card bg-surface border-outline transition-shadow hover:shadow-lg">
               <CardContent className="p-8">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -138,7 +143,7 @@ export default function HomePage() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-secondary"
+                    className="text-primary"
                   >
                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                     <circle cx="9" cy="7" r="4" />
@@ -146,19 +151,19 @@ export default function HomePage() {
                     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>
                 </div>
-                <h3 className="font-serif text-xl font-semibold text-foreground">
+                <h3 className="font-serif text-xl font-semibold text-label">
                   Verified Businesses
                 </h3>
-                <p className="mt-3 text-muted-foreground">
+                <p className="mt-3 text-description">
                   All merchants are verified through our KYC platform, ensuring
                   legitimate and trustworthy businesses
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 transition-shadow hover:shadow-lg">
+            <Card className="card bg-surface border-outline transition-shadow hover:shadow-lg">
               <CardContent className="p-8">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -169,17 +174,17 @@ export default function HomePage() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-accent"
+                    className="text-primary"
                   >
                     <circle cx="12" cy="12" r="10" />
                     <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
                     <path d="M2 12h20" />
                   </svg>
                 </div>
-                <h3 className="font-serif text-xl font-semibold text-foreground">
+                <h3 className="font-serif text-xl font-semibold text-label">
                   Earn Rewards
                 </h3>
-                <p className="mt-3 text-muted-foreground">
+                <p className="mt-3 text-description ">
                   Accumulate Sunrise Points with every transaction and redeem
                   them for exclusive benefits
                 </p>
@@ -190,7 +195,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-border bg-secondary text-secondary-foreground">
+      <section className="border-none">
         <div className="container mx-auto px-4 py-16 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-serif text-4xl font-bold tracking-tight lg:text-5xl">
@@ -202,17 +207,13 @@ export default function HomePage() {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button
                 size="lg"
-                variant="secondary"
-                className="bg-card text-card-foreground hover:bg-card/90"
-              >
-                Register Your Business
-              </Button>
-              <Button
-                size="lg"
                 variant="outline"
                 className="border-secondary-foreground/20 hover:bg-secondary-foreground/10 bg-transparent"
               >
                 Learn More
+              </Button>
+              <Button size="lg" variant="ghost" className="button">
+                Register Your Business
               </Button>
             </div>
           </div>

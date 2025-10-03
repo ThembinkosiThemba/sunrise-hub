@@ -17,21 +17,27 @@ export function Header({ showNavigation = true }: HeaderProps) {
   // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
   return (
     <>
-      <header className="border-b border-border bg-card relative z-40">
+      <header className="border-b border-outline bg-brand relative z-40">
         <div className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <Image src={logo} width={160} height={20} alt="Logo" style={{ height: 'auto' }} />
+            <Image
+              src={logo}
+              width={160}
+              height={20}
+              alt="Logo"
+              style={{ height: "auto" }}
+            />
           </Link>
 
           {showNavigation && (
@@ -39,19 +45,19 @@ export function Header({ showNavigation = true }: HeaderProps) {
               <div className="hidden lg:flex items-center gap-6">
                 <Link
                   href="/merchants"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm text-label transition-colors"
                 >
                   Merchants
                 </Link>
                 <Link
                   href="/points"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm text-label transition-colors"
                 >
                   Points
                 </Link>
                 <Link
                   href="/dashboard"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm text-label transition-colors"
                 >
                   Dashboard
                 </Link>
@@ -68,9 +74,11 @@ export function Header({ showNavigation = true }: HeaderProps) {
             </>
           )}
 
-          {!showNavigation && (
-            <Button variant="outline">Sign In</Button>
-          )}
+          {/* {!showNavigation && ( */}
+          <Button className="button" variant="outline">
+            Sign In
+          </Button>
+          {/* )} */}
         </div>
       </header>
 
@@ -88,21 +96,21 @@ export function Header({ showNavigation = true }: HeaderProps) {
             <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
               <Link
                 href="/merchants"
-                className="text-base text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="text-base text-label hover:text-brand transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Merchants
               </Link>
               <Link
                 href="/points"
-                className="text-base text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="text-base text-label hover:text-brand transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Points
               </Link>
               <Link
                 href="/dashboard"
-                className="text-base text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="text-base text-label hover:text-brand transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Dashboard

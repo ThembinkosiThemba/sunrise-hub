@@ -144,10 +144,10 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="font-serif text-3xl font-bold text-foreground">
+            <h2 className="font-serif text-3xl font-bold text-brand">
               Our Services
             </h2>
-            <p className="mt-1 text-muted-foreground">
+            <p className="mt-1 text-description">
               Browse our {mockServices.length} professional services
             </p>
           </div>
@@ -158,7 +158,7 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
           {mockServices.map((service) => (
             <Card
               key={service.id}
-              className="p-0 group cursor-pointer overflow-hidden border-2 transition-all hover:border-primary/50 hover:shadow-lg"
+              className="card bg-surface border-outline p-0 group cursor-pointer overflow-hidden transition-all hover:shadow-lg"
               onClick={() => setSelectedService(service)}
             >
               <div className="relative aspect-square overflow-hidden bg-muted">
@@ -175,10 +175,10 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
                 )}
               </div>
               <CardContent className="p-4">
-                <h3 className="font-serif text-lg font-semibold text-foreground line-clamp-1">
+                <h3 className="font-serif text-lg font-semibold text-brand line-clamp-1">
                   {service.service_name}
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+                <p className="mt-1 text-sm text-description line-clamp-2">
                   {service.description}
                 </p>
                 <div className="mt-3 flex items-center justify-between">
@@ -204,7 +204,7 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
         open={!!selectedService}
         onOpenChange={() => setSelectedService(null)}
       >
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="bg-surface max-w-4xl max-h-[90vh] overflow-y-auto">
           {selectedService && (
             <>
               <DialogHeader>
@@ -244,16 +244,16 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
                 {/* Service Details */}
                 <div className="space-y-4">
                   <div>
-                    <h3 className="mb-2 font-semibold text-foreground">
+                    <h3 className="mb-2 font-semibold text-description">
                       Description
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-description">
                       {selectedService.description}
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="mb-2 font-semibold text-foreground">
+                    <h3 className="mb-2 font-semibold text-brand">
                       Pricing
                     </h3>
                     <p className="text-2xl font-bold text-primary">
@@ -264,7 +264,7 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
                   {selectedService.variants &&
                     selectedService.variants.length > 0 && (
                       <div>
-                        <h3 className="mb-2 font-semibold text-foreground">
+                        <h3 className="mb-2 font-semibold text-brand">
                           Available Options
                         </h3>
                         <div className="flex flex-wrap gap-2">
@@ -284,7 +284,7 @@ export function MerchantServices({ merchant }: MerchantServicesProps) {
 
                 {/* Contact Actions */}
                 <div className="border-t border-border pt-6">
-                  <h3 className="mb-4 font-semibold text-foreground">
+                  <h3 className="mb-4 font-semibold text-brand">
                     Contact {merchant.display_name}
                   </h3>
                   <div className="grid gap-3 sm:grid-cols-2">
