@@ -14,15 +14,14 @@ interface HeaderProps {
 export function Header({ showNavigation = true }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
@@ -31,7 +30,13 @@ export function Header({ showNavigation = true }: HeaderProps) {
       <header className="border-b border-border bg-card relative z-40">
         <div className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <Image src={logo} width={160} height={20} alt="Logo" style={{ height: 'auto' }} />
+            <Image
+              src={logo}
+              width={160}
+              height={20}
+              alt="Logo"
+              style={{ height: "auto" }}
+            />
           </Link>
 
           {showNavigation && (
@@ -68,9 +73,7 @@ export function Header({ showNavigation = true }: HeaderProps) {
             </>
           )}
 
-          {!showNavigation && (
-            <Button variant="outline">Sign In</Button>
-          )}
+          {!showNavigation && <Button variant="outline">Sign In</Button>}
         </div>
       </header>
 

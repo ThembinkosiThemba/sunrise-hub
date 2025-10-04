@@ -4,6 +4,29 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* 🖋️ Fonts */
+  --default-font: "Inter", "Poppins", system-ui, sans-serif;
+  --heading-font: "Poppins", sans-serif;
+  --nav-font: "Inter", sans-serif;
+
+  /* 🎨 Marketplace Theme Colors */
+  --background-color: #012d5a;
+  --surface-color: #0a3d72;
+  --text-color: #ffffff;
+  --heading-color: #ffffff;
+  --secondary-text-color: #b0bec5;
+  --outline-color: #a9abac;
+  --accent-color: #ffd000;
+  --accent-hover-color: #ffb300;
+
+  --primary-gradient: linear-gradient(90deg, #ffd000 0%, #ffb300 100%);
+  --primary-gradient-hover: linear-gradient(90deg, #ffb300 0%, #ffd000 100%);
+
+  --default-btn-bg: var(--primary-gradient);
+  --default-btn-text: #012d5a;
+  --default-btn-hover-bg: var(--primary-gradient-hover);
+  --default-btn-hover-text: #012d5a;
+
   /* Premium sunrise-inspired color palette for financial marketing service */
   --background: oklch(0.97 0.01 75); /* Warm cream background */
   --foreground: oklch(0.25 0.01 75); /* Deep charcoal text */
@@ -138,5 +161,114 @@
 
   p {
     @apply text-pretty leading-relaxed;
+  }
+}
+
+@layer components {
+  .button {
+    @apply px-4 py-2 rounded-md font-medium transition-colors;
+    background: var(--default-btn-bg);
+    color: var(--default-btn-text);
+    font-family: var(--nav-font);
+  }
+
+  .button:hover {
+    background: var(--default-btn-hover-bg);
+    color: var(--default-btn-hover-text);
+  }
+
+  .card {
+    @apply p-1 rounded-xl shadow-md;
+    background-color: var(--surface-color);
+    border: 1px solid var(--outline-color);
+  }
+
+  .text-heading {
+    @apply text-2xl font-semibold;
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+  }
+
+  .text-secondary {
+    @apply text-sm;
+    color: var(--secondary-text-color);
+  }
+
+  .btn-brand {
+    @apply px-4 py-2 rounded-md font-medium transition-colors;
+    background: var(--default-btn-bg);
+    color: var(--default-btn-text);
+    font-family: var(--nav-font);
+  }
+
+  .btn-brand:hover {
+    background: var(--default-btn-hover-bg);
+    color: var(--default-btn-hover-text);
+  }
+
+  .bg-brand {
+    background-color: var(--background-color);
+  }
+
+  .bg-surface {
+    background-color: var(--surface-color);
+  }
+
+  .text-brand {
+    color: var(--text-color);
+  }
+
+  .text-accent {
+    color: var(--accent-color);
+  }
+  .text-accent:hover {
+    color: var(--text-color);
+  }
+
+  .border-outline {
+    border-color: var(--outline-color);
+  }
+
+  .border-outline-full {
+    border: 2px solid var(--outline-color);
+  }
+
+  .bg-accent {
+    background-color: var(--accent-color);
+  }
+
+  .bg-accent-hover:hover {
+    background-color: var(--accent-hover-color);
+  }
+
+  /* Form Section Titles (slightly smaller than card titles) */
+  .text-form-title {
+    @apply text-lg font-medium;
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+  }
+
+  /* Form Field Labels (stronger than descriptions) */
+  .text-label {
+    @apply text-sm font-medium;
+    color: var(--text-color);
+    font-family: var(--default-font);
+  }
+  .text-label:hover {
+    color: var(--accent-color);
+  }
+
+  /* Form Option Labels (checkboxes, dropdowns) */
+  .text-option {
+    @apply text-sm;
+    color: var(--text-color);
+    font-family: var(--default-font);
+  }
+
+  /* Sub-labels, descriptions, or help text */
+  .text-description {
+    /* @apply text-xs; */
+    color: var(--secondary-text-color);
+    font-family: var(--default-font);
   }
 }

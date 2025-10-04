@@ -1,5 +1,6 @@
-import { SunriseLogo } from "@/components/sunrise-logo";
+import { logo2 } from "@/assets";
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -7,12 +8,15 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12 lg:px-8">
         <div className="grid gap-8 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3">
-              <SunriseLogo className="h-8 w-8" />
-              <span className="font-serif text-xl font-bold text-foreground">
-                SUNRISE HUB
-              </span>
-            </div>
+            <Link href="/" className="flex items-center gap-3">
+              <Image
+                src={logo2}
+                width={160}
+                height={20}
+                alt="Logo"
+                style={{ height: "auto" }}
+              />
+            </Link>
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
               Empowering MSMEs and professionals in Eswatini with affordable
               digital presence and marketing solutions.
