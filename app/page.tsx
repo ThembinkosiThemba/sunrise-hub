@@ -45,7 +45,7 @@ export default function HomePage() {
               className="relative mx-auto max-w-2xl"
               onSubmit={handleSearch}
             >
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-description" />
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Search by business, category or location"
@@ -195,7 +195,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-none">
+      <section className="border-t border-border bg-brand text-secondary-foreground">
         <div className="container mx-auto px-4 py-16 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-serif text-4xl font-bold tracking-tight lg:text-5xl">
@@ -205,6 +205,9 @@ export default function HomePage() {
               Join hundreds of businesses already thriving on Sunrise Hub
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Button size="lg" variant="ghost" className="button">
+                Register Your Business
+              </Button>
               <Button
                 size="lg"
                 variant="outline"

@@ -14,7 +14,6 @@ interface HeaderProps {
 export function Header({ showNavigation = true }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -74,11 +73,7 @@ export function Header({ showNavigation = true }: HeaderProps) {
             </>
           )}
 
-          {/* {!showNavigation && ( */}
-          <Button className="button" variant="outline">
-            Sign In
-          </Button>
-          {/* )} */}
+          {!showNavigation && <Button variant="outline">Sign In</Button>}
         </div>
       </header>
 

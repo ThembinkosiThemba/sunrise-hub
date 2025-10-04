@@ -17,7 +17,7 @@ export function Footer() {
                 style={{ height: "auto" }}
               />
             </Link>
-            <p className="mt-4 max-w-md text-sm text-description">
+            <p className="mt-4 max-w-md text-sm text-muted-foreground">
               Empowering MSMEs and professionals in Eswatini with affordable
               digital presence and marketing solutions.
             </p>
