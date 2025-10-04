@@ -36,28 +36,22 @@ export function MerchantProfileHeader({
   const [showBranches, setShowBranches] = useState(false);
 
   // Generate share URLs
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareText = `Check out ${merchant.display_name} on Sunrise Hub!`;
 
   const shareLinks = {
-    whatsapp: `https://wa.me/?text=${encodeURIComponent(
-      shareText + " " + shareUrl
-    )}`,
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      shareUrl
-    )}`,
-    twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      shareText
-    )}&url=${encodeURIComponent(shareUrl)}`,
+    whatsapp: `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+    twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
   };
 
-  const handleShare = (platform: "whatsapp" | "facebook" | "twitter") => {
-    window.open(shareLinks[platform], "_blank", "noopener,noreferrer");
+  const handleShare = (platform: 'whatsapp' | 'facebook' | 'twitter') => {
+    window.open(shareLinks[platform], '_blank', 'noopener,noreferrer');
   };
 
   return (
     <div className="space-y-4 lg:space-y-6">
-      <Card className="overflow-hidden border-2 p-0 card bg-surface border-outline">
+      <Card className="overflow-hidden border-2 p-0">
         <div className="relative h-32 sm:h-40 lg:h-48 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative h-20 w-20 sm:h-24 sm:w-24 lg:h-32 lg:w-32 overflow-hidden rounded-xl lg:rounded-2xl border-1 border-card bg-card shadow-xl">
@@ -73,41 +67,32 @@ export function MerchantProfileHeader({
         <CardContent className="pt-12 sm:pt-16 lg:pt-20 pb-6 lg:pb-8 px-4 lg:px-6">
           <div className="text-center">
             <div className="mb-3 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
-              <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-brand">
+              <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
                 {merchant.display_name}
               </h1>
               <VerificationBadge status={merchant.verification_status} />
             </div>
-            <p className="mx-auto max-w-2xl text-sm sm:text-base lg:text-lg text-description px-4">
+            <p className="mx-auto max-w-2xl text-sm sm:text-base lg:text-lg text-muted-foreground px-4">
               {merchant.short_bio}
             </p>
 
             <div className="mt-4 lg:mt-6 flex flex-wrap items-center justify-center gap-2 lg:gap-3">
-              <Badge
-                variant="secondary"
-                className="text-xs sm:text-sm text-description"
-              >
+              <Badge variant="secondary" className="text-xs sm:text-sm">
                 {merchant.industry}
               </Badge>
-              <Badge
-                variant="outline"
-                className="text-xs sm:text-sm text-description"
-              >
+              <Badge variant="outline" className="text-xs sm:text-sm">
                 {merchant.sub_industry}
               </Badge>
-              <Badge
-                variant="outline"
-                className="text-xs sm:text-sm text-description"
-              >
+              <Badge variant="outline" className="text-xs sm:text-sm">
                 {merchant.services_count} Services
               </Badge>
             </div>
 
             <div className="mt-4 lg:mt-6 flex flex-col sm:flex-row flex-wrap justify-center gap-2 lg:gap-3">
               <Button
-                variant="ghost"
+                variant="default"
                 size="sm"
-                className="button gap-2 w-full sm:w-auto lg:text-base"
+                className="gap-2 w-full sm:w-auto lg:text-base"
                 asChild
               >
                 <a href={`tel:${merchant.contacts.phone}`}>
@@ -128,7 +113,6 @@ export function MerchantProfileHeader({
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-description"
                 >
                   <Image
                     src={whatsapp}
@@ -143,11 +127,7 @@ export function MerchantProfileHeader({
             </div>
 
             {/* Share Accordion */}
-            <Accordion
-              type="single"
-              collapsible
-              className="w-full mt-4 lg:mt-6"
-            >
+            <Accordion type="single" collapsible className="w-full mt-4 lg:mt-6">
               <AccordionItem value="share" className="border rounded-lg px-4">
                 <AccordionTrigger className="hover:no-underline">
                   <div className="flex items-center gap-2">
@@ -161,45 +141,27 @@ export function MerchantProfileHeader({
                       variant="outline"
                       size="sm"
                       className="gap-2 justify-start"
-                      onClick={() => handleShare("whatsapp")}
+                      onClick={() => handleShare('whatsapp')}
                     >
-                      <Image
-                        src={whatsapp}
-                        alt="WhatsApp"
-                        width={16}
-                        height={16}
-                        className="h-4 w-4"
-                      />
+                      <Image src={whatsapp} alt="WhatsApp" width={16} height={16} className="h-4 w-4" />
                       Share on WhatsApp
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       className="gap-2 justify-start"
-                      onClick={() => handleShare("facebook")}
+                      onClick={() => handleShare('facebook')}
                     >
-                      <Image
-                        src={facebook}
-                        alt="Facebook"
-                        width={16}
-                        height={16}
-                        className="h-4 w-4"
-                      />
+                      <Image src={facebook} alt="Facebook" width={16} height={16} className="h-4 w-4" />
                       Share on Facebook
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       className="gap-2 justify-start"
-                      onClick={() => handleShare("twitter")}
+                      onClick={() => handleShare('twitter')}
                     >
-                      <Image
-                        src={x}
-                        alt="X/Twitter"
-                        width={16}
-                        height={16}
-                        className="h-4 w-4"
-                      />
+                      <Image src={x} alt="X/Twitter" width={16} height={16} className="h-4 w-4" />
                       Share on X (Twitter)
                     </Button>
                   </div>
@@ -211,9 +173,9 @@ export function MerchantProfileHeader({
       </Card>
 
       {/* Contact Information */}
-      <Card className="card bg-surface border-outline">
+      <Card className="border-2">
         <CardContent className="p-4 lg:p-6">
-          <h2 className="mb-4 font-serif text-xl lg:text-2xl font-semibold text-brand">
+          <h2 className="mb-4 font-serif text-xl lg:text-2xl font-semibold text-foreground">
             Contact Information
           </h2>
           <div className="grid gap-3 lg:gap-4 sm:grid-cols-2">
@@ -222,8 +184,10 @@ export function MerchantProfileHeader({
                 <Phone className="h-4 w-4 lg:h-5 lg:w-5 text-primary" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs lg:text-sm text-description">Phone</p>
-                <p className="font-medium text-sm lg:text-base text-description truncate">
+                <p className="text-xs lg:text-sm text-muted-foreground">
+                  Phone
+                </p>
+                <p className="font-medium text-sm lg:text-base text-foreground truncate">
                   {merchant.contacts.phone}
                 </p>
               </div>
@@ -240,8 +204,10 @@ export function MerchantProfileHeader({
                 />
               </div>
               <div className="min-w-0">
-                <p className="text-xs lg:text-sm text-description">WhatsApp</p>
-                <p className="font-medium text-sm lg:text-base text-description truncate">
+                <p className="text-xs lg:text-sm text-muted-foreground">
+                  WhatsApp
+                </p>
+                <p className="font-medium text-sm lg:text-base text-foreground truncate">
                   {merchant.contacts.whatsapp}
                 </p>
               </div>
@@ -252,8 +218,10 @@ export function MerchantProfileHeader({
                 <Mail className="h-4 w-4 lg:h-5 lg:w-5 text-accent" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs lg:text-sm text-description">Email</p>
-                <p className="font-medium text-sm lg:text-base text-description truncate">
+                <p className="text-xs lg:text-sm text-muted-foreground">
+                  Email
+                </p>
+                <p className="font-medium text-sm lg:text-base text-foreground truncate">
                   {merchant.contacts.email}
                 </p>
               </div>
@@ -265,7 +233,9 @@ export function MerchantProfileHeader({
                   <Globe className="h-4 w-4 lg:h-5 lg:w-5 text-primary" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-xs lg:text-sm text-description">Website</p>
+                  <p className="text-xs lg:text-sm text-muted-foreground">
+                    Website
+                  </p>
                   <a
                     href={merchant.contacts.website}
                     target="_blank"
@@ -282,7 +252,7 @@ export function MerchantProfileHeader({
 
           {merchant.contacts.social_media && (
             <div className="mt-4 lg:mt-6 border-t border-border pt-4 lg:pt-6">
-              <p className="mb-3 text-xs lg:text-sm font-medium text-description">
+              <p className="mb-3 text-xs lg:text-sm font-medium text-muted-foreground">
                 Social Media
               </p>
               <div className="flex flex-wrap gap-2">
@@ -324,10 +294,10 @@ export function MerchantProfileHeader({
       </Card>
 
       {/* Location & Branches */}
-      <Card className="card bg-surface border-outline">
+      <Card className="border-2">
         <CardContent className="p-4 lg:p-6">
           <div className="mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-            <h2 className="font-serif text-xl lg:text-2xl font-semibold text-brand">
+            <h2 className="font-serif text-xl lg:text-2xl font-semibold text-foreground">
               Location & Branches
             </h2>
             {merchant.branches.length > 1 && (
@@ -364,7 +334,7 @@ export function MerchantProfileHeader({
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <p className="font-semibold text-sm lg:text-base text-brand">
+                      <p className="font-semibold text-sm lg:text-base text-foreground">
                         {branch.name}
                       </p>
                       {branch.is_main && (
@@ -373,10 +343,10 @@ export function MerchantProfileHeader({
                         </Badge>
                       )}
                     </div>
-                    <p className="mt-1 text-xs lg:text-sm text-description">
+                    <p className="mt-1 text-xs lg:text-sm text-muted-foreground">
                       {branch.address}
                     </p>
-                    <p className="mt-1 text-xs lg:text-sm text-description">
+                    <p className="mt-1 text-xs lg:text-sm text-muted-foreground">
                       Phone: {branch.phone}
                     </p>
                   </div>
@@ -388,31 +358,31 @@ export function MerchantProfileHeader({
 
       {/* Verification Details */}
       {merchant.verification_details && (
-        <Card className="border-outline bg-surface card">
+        <Card className="border-2 border-secondary/20 bg-secondary/5">
           <CardContent className="p-4 lg:p-6">
-            <h3 className="mb-3 font-serif text-lg lg:text-xl font-semibold text-label">
+            <h3 className="mb-3 font-serif text-lg lg:text-xl font-semibold text-foreground">
               Verification Details
             </h3>
             <div className="space-y-2 text-xs lg:text-sm">
               {merchant.verification_details.umpakatsi && (
-                <p className="text-description">
-                  <span className="font-medium text-description">
+                <p className="text-muted-foreground">
+                  <span className="font-medium text-foreground">
                     Umpakatsi:
                   </span>{" "}
                   {merchant.verification_details.umpakatsi}
                 </p>
               )}
               {merchant.verification_details.verified_by && (
-                <p className="text-description">
-                  <span className="font-medium text-description">
+                <p className="text-muted-foreground">
+                  <span className="font-medium text-foreground">
                     Verified by:
                   </span>{" "}
                   {merchant.verification_details.verified_by}
                 </p>
               )}
               {merchant.verification_details.verified_date && (
-                <p className="text-description">
-                  <span className="font-medium text-description">
+                <p className="text-muted-foreground">
+                  <span className="font-medium text-foreground">
                     Verified on:
                   </span>{" "}
                   {new Date(

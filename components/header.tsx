@@ -27,7 +27,7 @@ export function Header({ showNavigation = true }: HeaderProps) {
 
   return (
     <>
-      <header className="border-b border-outline bg-brand relative z-40">
+      <header className="border-b border-border bg-card relative z-40">
         <div className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
           <Link href="/" className="flex items-center gap-3">
             <Image
@@ -44,19 +44,19 @@ export function Header({ showNavigation = true }: HeaderProps) {
               <div className="hidden lg:flex items-center gap-6">
                 <Link
                   href="/merchants"
-                  className="text-sm text-label transition-colors"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Merchants
                 </Link>
                 <Link
                   href="/points"
-                  className="text-sm text-label transition-colors"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Points
                 </Link>
                 <Link
                   href="/dashboard"
-                  className="text-sm text-label transition-colors"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Dashboard
                 </Link>
@@ -91,21 +91,21 @@ export function Header({ showNavigation = true }: HeaderProps) {
             <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
               <Link
                 href="/merchants"
-                className="text-base text-label hover:text-brand transition-colors py-2"
+                className="text-base text-muted-foreground hover:text-foreground transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Merchants
               </Link>
               <Link
                 href="/points"
-                className="text-base text-label hover:text-brand transition-colors py-2"
+                className="text-base text-muted-foreground hover:text-foreground transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Points
               </Link>
               <Link
                 href="/dashboard"
-                className="text-base text-label hover:text-brand transition-colors py-2"
+                className="text-base text-muted-foreground hover:text-foreground transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Dashboard

@@ -28,31 +28,11 @@ export default function MerchantPage({ params }: MerchantPageProps) {
       {/* Merchant Profile */}
       <div className="container mx-auto px-4 py-8 lg:px-8">
         <Tabs defaultValue="profile" className="space-y-8">
-          <TabsList className="bg-surface text-brand grid w-full grid-cols-4 lg:w-auto lg:inline-grid">
-            <TabsTrigger
-              className="text-brand data-[state=active]:bg-slate-600"
-              value="profile"
-            >
-              Profile
-            </TabsTrigger>
-            <TabsTrigger
-              className="text-brand data-[state=active]:bg-slate-600"
-              value="services"
-            >
-              Services
-            </TabsTrigger>
-            <TabsTrigger
-              className="text-brand data-[state=active]:bg-slate-600"
-              value="payment"
-            >
-              Payment
-            </TabsTrigger>
-            <TabsTrigger
-              className="text-brand data-[state=active]:bg-slate-600"
-              value="promotions"
-            >
-              Promotions
-            </TabsTrigger>
+          <TabsList className="grid w-full grid-cols-4 lg:w-auto lg:inline-grid">
+            <TabsTrigger value="profile">Profile</TabsTrigger>
+            <TabsTrigger value="services">Services</TabsTrigger>
+            <TabsTrigger value="payment">Payment</TabsTrigger>
+            <TabsTrigger value="promotions">Promotions</TabsTrigger>
           </TabsList>
 
           <TabsContent value="profile" className="space-y-6">

@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Building2, Users, BarChart3, Shield } from "lucide-react";
-import { Header } from "@/components/header";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Building2, Users, BarChart3, Shield } from "lucide-react"
+import { Header } from "@/components/header"
 
 export default function EnterprisePage() {
   return (
@@ -11,10 +11,8 @@ export default function EnterprisePage() {
       {/* Hero */}
       <section className="container mx-auto px-4 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="font-serif text-5xl font-bold text-brand lg:text-6xl">
-            Sunrise Enterprise
-          </h1>
-          <p className="mt-6 text-xl text-description">
+          <h1 className="font-serif text-5xl font-bold text-foreground lg:text-6xl">Sunrise Enterprise</h1>
+          <p className="mt-6 text-xl text-muted-foreground">
             Business solutions and partnerships for organizations in Eswatini
           </p>
 
@@ -24,12 +22,8 @@ export default function EnterprisePage() {
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
                   <Building2 className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="font-serif text-lg font-semibold text-brand">
-                  Corporate Accounts
-                </h3>
-                <p className="mt-2 text-sm text-description">
-                  Manage multiple business profiles
-                </p>
+                <h3 className="font-serif text-lg font-semibold text-foreground">Corporate Accounts</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Manage multiple business profiles</p>
               </CardContent>
             </Card>
 
@@ -38,12 +32,8 @@ export default function EnterprisePage() {
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10">
                   <Users className="h-7 w-7 text-secondary" />
                 </div>
-                <h3 className="font-serif text-lg font-semibold text-brand">
-                  Team Management
-                </h3>
-                <p className="mt-2 text-sm text-description">
-                  Collaborate with your team
-                </p>
+                <h3 className="font-serif text-lg font-semibold text-foreground">Team Management</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Collaborate with your team</p>
               </CardContent>
             </Card>
 
@@ -52,12 +42,8 @@ export default function EnterprisePage() {
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10">
                   <BarChart3 className="h-7 w-7 text-accent" />
                 </div>
-                <h3 className="font-serif text-lg font-semibold text-brand">
-                  Analytics
-                </h3>
-                <p className="mt-2 text-sm text-description">
-                  Advanced insights and reporting
-                </p>
+                <h3 className="font-serif text-lg font-semibold text-foreground">Analytics</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Advanced insights and reporting</p>
               </CardContent>
             </Card>
 
@@ -66,12 +52,8 @@ export default function EnterprisePage() {
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
                   <Shield className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="font-serif text-lg font-semibold text-brand">
-                  Priority Support
-                </h3>
-                <p className="mt-2 text-sm text-description">
-                  Dedicated account manager
-                </p>
+                <h3 className="font-serif text-lg font-semibold text-foreground">Priority Support</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Dedicated account manager</p>
               </CardContent>
             </Card>
           </div>
@@ -85,5 +67,5 @@ export default function EnterprisePage() {
         </div>
       </section>
     </div>
-  );
+  )
 }

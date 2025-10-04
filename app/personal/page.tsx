@@ -1,8 +1,8 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Coins, Search, Heart } from "lucide-react";
-import Link from "next/link";
-import { Header } from "@/components/header";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card"
+import { Coins, Search, Heart } from "lucide-react"
+import Link from "next/link"
+import { Header } from "@/components/header"
+import { Button } from "@/components/ui/button"
 
 export default function PersonalPage() {
   return (
@@ -12,10 +12,8 @@ export default function PersonalPage() {
       {/* Hero */}
       <section className="container mx-auto px-4 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="font-serif text-5xl font-bold text-brand lg:text-6xl">
-            Sunrise Personal
-          </h1>
-          <p className="mt-6 text-xl text-description">
+          <h1 className="font-serif text-5xl font-bold text-foreground lg:text-6xl">Sunrise Personal</h1>
+          <p className="mt-6 text-xl text-muted-foreground">
             Discover local businesses, earn rewards, and support your community
           </p>
 
@@ -25,12 +23,8 @@ export default function PersonalPage() {
                 <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
                   <Search className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="font-serif text-xl font-semibold text-brand">
-                  Discover
-                </h3>
-                <p className="mt-2 text-sm text-description">
-                  Find verified local businesses and services
-                </p>
+                <h3 className="font-serif text-xl font-semibold text-foreground">Discover</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Find verified local businesses and services</p>
               </CardContent>
             </Card>
 
@@ -39,12 +33,8 @@ export default function PersonalPage() {
                 <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10">
                   <Coins className="h-8 w-8 text-accent" />
                 </div>
-                <h3 className="font-serif text-xl font-semibold text-brand">
-                  Earn Points
-                </h3>
-                <p className="mt-2 text-sm text-description">
-                  Get rewarded for every purchase and engagement
-                </p>
+                <h3 className="font-serif text-xl font-semibold text-foreground">Earn Points</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Get rewarded for every purchase and engagement</p>
               </CardContent>
             </Card>
 
@@ -53,12 +43,8 @@ export default function PersonalPage() {
                 <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary/10">
                   <Heart className="h-8 w-8 text-secondary" />
                 </div>
-                <h3 className="font-serif text-xl font-semibold text-brand">
-                  Support Local
-                </h3>
-                <p className="mt-2 text-sm text-description">
-                  Help local businesses thrive in your community
-                </p>
+                <h3 className="font-serif text-xl font-semibold text-foreground">Support Local</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Help local businesses thrive in your community</p>
               </CardContent>
             </Card>
           </div>
@@ -74,5 +60,5 @@ export default function PersonalPage() {
         </div>
       </section>
     </div>
-  );
+  )
 }

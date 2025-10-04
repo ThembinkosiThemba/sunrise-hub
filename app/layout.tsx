@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-brand text-brand font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable} antialiased`}
+        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable} antialiased`}
       >
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
       </body>

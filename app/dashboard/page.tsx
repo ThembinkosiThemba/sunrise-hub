@@ -60,7 +60,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <header className="border-b border-charcoal/10 bg-brand">
+      <header className="border-b border-charcoal/10 bg-white">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 lg:gap-3">
